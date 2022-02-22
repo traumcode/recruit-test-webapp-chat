@@ -1,0 +1,13 @@
+.nav .logo {
+   display: block;
+   max-width: 100%;
+   cursor: pointer;
+   }
+
+.nav {
+   max-width:100px;
+   display: flex;
+   justify-content: space-between;
+   flex-direction: column;
+   padding: 10px 25px 0;
+   }

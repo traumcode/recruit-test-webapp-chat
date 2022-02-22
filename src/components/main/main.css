@@ -1,0 +1,7 @@
+.__main_body {
+   flex-grow: 1;
+   background-color: #f4f3f8;
+   padding: 15px 20px;
+   display: flex;
+   height:100%;
+   }
