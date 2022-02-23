@@ -8,12 +8,21 @@ let mainChatStorage = JSON.parse(window.localStorage.getItem("MainChatStorage") 
 function ChatContacts (props) {
 	const [ chats, setChats ] = useState(mainChatStorage.Users)
 
+	const handleNewChat =() => {
+
+		const element = document.getElementById('new-input').style.display
+		console.log(element)
+	}
 	return (
 		<div className="main__chatcontacts">
-			<button className="btn">
+			<button className="btn" onClick={() => handleNewChat()}>
 				<i className="fas fa-plus-square"/>
 				<span>Start new chat</span>
 			</button>
+			<div id='new-input'>
+				<input type="text" />
+				<button type='submit'>Ok</button>
+			</div>
 			<div className="chatcontacts__head">
 				<h2>Chats</h2>
 				<button className="btn-nobg">

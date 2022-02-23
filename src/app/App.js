@@ -25,11 +25,15 @@ function App () {
 							image: "https://www.peterbe.com/avatar.random.png",
 							active: true,
 							isOnline: true,
-							messages:[{
-								key: 1,
-								image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-								type: "",
-								msg: "Hi Silviu, How are you?", }]
+							messages:
+								[
+									{
+										key: 1,
+										image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+										type: "",
+										msg: "Hi Silviu, How are you?"
+									}
+									]
 						},
 						{
 							id: 1,
@@ -37,11 +41,50 @@ function App () {
 							image: "https://www.peterbe.com/avatar.random.png",
 							active: true,
 							isOnline: false,
-							messages:[{
-								key: 1,
-								image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-								type: "",
-								msg: "Hi Aliiinaaa, How are you?", }]
+							messages:[
+								{
+									key: 1,
+									image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+									type: "",
+									msg: "Hi Aliiinaaa, How are you?", },
+								{
+									key: 2,
+									image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+									type: "",
+									msg: "Hi Aliiinaaa, How are you?",
+								}]
+						},
+						{
+							id: 2,
+							name: "Rsd",
+							image: "https://www.peterbe.com/avatar.random.png",
+							active: true,
+							isOnline: false,
+							messages:[
+								{
+									key: 1,
+									image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+									type: "",
+									msg: "Hi Aliidsfsdffdsinaaa, How are you?", },
+								{
+									key: 2,
+									image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+									type: "",
+									msg: "Hi Aliiidfsddsffds, How are you?",
+
+								},{
+									key: 3,
+									image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+									type: "",
+									msg: "Hi How are you?",
+
+								},{
+									key: 4,
+									image: "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
+									type: "",
+									msg: "Hi  you?",
+
+								}]
 						}
 					],
 					CurrentChat: ''
