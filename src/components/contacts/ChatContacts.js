@@ -8,6 +8,7 @@ function ChatContacts ({ mainChatStorage }) {
 	const [ user, setUser ] = useState("")
 
 	const chats = mainChatStorage.Users.filter((user) => user.name)
+
 	const handleNewChat = () => {
 		const element = document.getElementById("new-input")
 		if (window.getComputedStyle(element).display === "block") {
@@ -19,21 +20,33 @@ function ChatContacts ({ mainChatStorage }) {
 
 	const handleNewUser = () => {
 		const findUser = mainChatStorage.Users.find((usr) => usr.name === user)
-		if(findUser === undefined) {
-			setMainStorage(
-				{
-					Users: [ ...mainChatStorage.Users,
-						{
-							id: mainChatStorage.Users.length,
-							name: user,
-							image: "",
-							isOnline: true,
-							active: true,
-							messages: [ {} ]
-						} ]
-				})
-		}
+
+		window.addEventListener("keydown", (e) => {
+				if (e.key === "Enter") {
+					if(findUser === undefined) {
+						setMainStorage(
+							{
+								Users: [ ...mainChatStorage.Users,
+									{
+										id: mainChatStorage.Users.length,
+										name: user,
+										image: "",
+										isOnline: true,
+										active: true,
+										messages: [ {} ]
+									} ]
+							})
+						setUser('')
+					} else {
+						alert("USER ALREADY IN DATABASE")
+						setUser('')
+					}
+
+				}
+
+			})
 	}
+
 
 	return (
 		<div className="main__chatcontacts">
@@ -42,8 +55,8 @@ function ChatContacts ({ mainChatStorage }) {
 				<span>Start new chat</span>
 			</button>
 			<div id="new-input" style={{ display: "none" }}>
-				<input type="text" onChange={(e) => setUser(e.target.value)}/>
-				<button type="submit" onClick={() => handleNewUser()}>Ok</button>
+				<input type="text" onKeyPress={() => handleNewUser()} onChange={(e) => setUser(e.target.value)}/>
+				<button type="submit" onKeyPress={() => handleNewUser()}>Ok</button>
 			</div>
 			<div className="chatcontacts__head">
 				<h2>Chats</h2>
