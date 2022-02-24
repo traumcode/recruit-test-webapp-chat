@@ -20,31 +20,23 @@ function ChatContacts ({ mainChatStorage }) {
 
 	const handleNewUser = () => {
 		const findUser = mainChatStorage.Users.find((usr) => usr.name === user)
-
-		window.addEventListener("keydown", (e) => {
-				if (e.key === "Enter") {
-					if(findUser === undefined) {
-						setMainStorage(
-							{
-								Users: [ ...mainChatStorage.Users,
-									{
-										id: mainChatStorage.Users.length,
-										name: user,
-										image: "",
-										isOnline: true,
-										active: true,
-										messages: [ {} ]
-									} ]
-							})
-						setUser('')
-					} else {
-						alert("USER ALREADY IN DATABASE")
-						setUser('')
-					}
-
-				}
-
-			})
+		if (findUser === undefined) {
+			setMainStorage(
+				{
+					Users: [ ...mainChatStorage.Users,
+						{
+							id: mainChatStorage.Users.length,
+							name: user,
+							image: "",
+							isOnline: true,
+							active: true,
+							messages: [ {} ]
+						} ]
+				})
+		} else {
+			setMainStorage({ CurrentChat: user })
+		}
+		handleNewChat()
 	}
 
 
@@ -55,8 +47,8 @@ function ChatContacts ({ mainChatStorage }) {
 				<span>Start new chat</span>
 			</button>
 			<div id="new-input" style={{ display: "none" }}>
-				<input type="text" onKeyPress={() => handleNewUser()} onChange={(e) => setUser(e.target.value)}/>
-				<button type="submit" onKeyPress={() => handleNewUser()}>Ok</button>
+				<input type="text" onChange={(e) => {setUser(e.target.value)}} className="form__field"/>
+				<button type="submit" className="btnn btnn--primary btnn--inside uppercase" onClick={() => handleNewUser()}>Ok</button>
 			</div>
 			<div className="chatcontacts__head">
 				<h2>Chats</h2>
@@ -74,15 +66,28 @@ function ChatContacts ({ mainChatStorage }) {
 			</div>
 			<div className="chatcontacts__items">
 				{chats.length ? chats.map((user, index) => {
-					return (
-						<ChatContactsItems
-							key={user.id}
-							name={user.name}
-							animationDelay={index + 1}
-							image={user.image}
-							active={user.active ? "active" : ""}
-							isOnline={user.isOnline ? "active" : ""}
-						/>)
+					if (user.name.split(" ").length === 1) {
+						return (
+							<ChatContactsItems
+								key={user.id}
+								name={user.name}
+								animationDelay={index + 1}
+								image={user.image}
+								active={user.active ? "active" : ""}
+								isOnline={user.isOnline ? "active" : ""}
+							/>)
+					} else {
+						return (
+							<ChatContactsItems
+								key={user.id}
+								name={"GROUP CHAT" + " " + user.name}
+								animationDelay={index + 1}
+								image={user.image}
+								active={user.active ? "active" : ""}
+								isOnline={user.isOnline ? "active" : ""}
+							/>)
+					}
+
 				}) : <div>You have no conversations,</div>}
 			</div>
 		</div>
