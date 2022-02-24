@@ -18,18 +18,21 @@ function ChatContacts ({ mainChatStorage }) {
 	}
 
 	const handleNewUser = () => {
-		setMainStorage(
-			{
-				Users: [ ...mainChatStorage.Users,
-					{
-						id: mainChatStorage.Users.length,
-						name: user,
-						image: "",
-						isOnline: true,
-						active: true,
-						messages: [ {} ]
-					} ]
-			})
+		const findUser = mainChatStorage.Users.find((usr) => usr.name === user)
+		if(findUser === undefined) {
+			setMainStorage(
+				{
+					Users: [ ...mainChatStorage.Users,
+						{
+							id: mainChatStorage.Users.length,
+							name: user,
+							image: "",
+							isOnline: true,
+							active: true,
+							messages: [ {} ]
+						} ]
+				})
+		}
 	}
 
 	return (

@@ -67,15 +67,27 @@ function ChatMessages ({ mainChatStorage }) {
 			<div className="content__body">
 				<div className="chat__items">
 					{chat.map((itm, index) => {
-						return (
-							<ChatItem
-								animationDelay={index + 2}
-								key={itm.key}
-								user={itm.type ? itm.type : "me"}
-								message={itm.msg}
-								image={itm.image}
-							/>
-						)
+						if (Object.keys(itm).length !== 0) {
+							return (
+								<div key={index}>
+									<ChatItem
+										animationDelay={index + 2}
+										user={itm.type ? itm.type : "me"}
+										message={itm.msg}
+										image={itm.image}
+									/>
+									<div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+										<ChatItem
+											animationDelay={index + 2}
+											key={itm.key}
+											user={itm.type ? itm.type : "me"}
+											message={itm.msg + '❤️️'}
+											image={itm.image}
+										/>
+									</div>
+								</div>)
+						}
+						return null;
 					})}
 				</div>
 			</div>
