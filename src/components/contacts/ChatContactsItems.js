@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./chatContacts.css"
 import Avatar from "./Avatar";
 import { setMainStorage } from '../../app/App';
 
 function ChatContactsItems (props) {
+	const [user, setUser] = useState("");
+
+	let mainChatStorage = JSON.parse(window.localStorage.getItem("MainChatStorage") || "{}")
+
 	const handleChat = (e) => {
 		for (
 			let i = 0;
@@ -13,13 +17,13 @@ function ChatContactsItems (props) {
 			e.currentTarget.parentNode.children[i].classList.remove("active");
 		}
 		e.currentTarget.classList.add("active");
-		setMainStorage({CurrentChat: e.currentTarget.children[1].firstChild.innerHTML})
+		setUser(mainChatStorage.CurrentChat)
 	}
 
 	return (
 			<div
 				style={{ animationDelay: `0.${props.animationDelay}s` }}
-				onClick={handleChat}
+				onClick={(e) => {handleChat(e); setMainStorage({ CurrentChat: e.currentTarget.children[1].firstChild.innerHTML })}}
 				className={`chatcontacts__item ${props.active ? props.active : ""}`}
 			>
 				<Avatar

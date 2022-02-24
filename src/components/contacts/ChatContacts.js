@@ -1,27 +1,46 @@
 import React, { useState } from "react";
 import "./chatContacts.css"
 import ChatContactsItems from "./ChatContactsItems";
+import { setMainStorage } from "../../app/App";
 
-let mainChatStorage = JSON.parse(window.localStorage.getItem("MainChatStorage") || "{}")
 
+function ChatContacts ({ mainChatStorage }) {
+	const [ user, setUser ] = useState("")
 
-function ChatContacts (props) {
-	const [ chats, setChats ] = useState(mainChatStorage.Users)
-
-	const handleNewChat =() => {
-
-		const element = document.getElementById('new-input').style.display
-		console.log(element)
+	const chats = mainChatStorage.Users.filter((user) => user.name)
+	const handleNewChat = () => {
+		const element = document.getElementById("new-input")
+		if (window.getComputedStyle(element).display === "block") {
+			document.getElementById("new-input").style.display = "none"
+		} else {
+			document.getElementById("new-input").style.display = "block"
+		}
 	}
+
+	const handleNewUser = () => {
+		setMainStorage(
+			{
+				Users: [ ...mainChatStorage.Users,
+					{
+						id: mainChatStorage.Users.length,
+						name: user,
+						image: "",
+						isOnline: true,
+						active: true,
+						messages: [ {} ]
+					} ]
+			})
+	}
+
 	return (
 		<div className="main__chatcontacts">
 			<button className="btn" onClick={() => handleNewChat()}>
 				<i className="fas fa-plus-square"/>
 				<span>Start new chat</span>
 			</button>
-			<div id='new-input'>
-				<input type="text" />
-				<button type='submit'>Ok</button>
+			<div id="new-input" style={{ display: "none" }}>
+				<input type="text" onChange={(e) => setUser(e.target.value)}/>
+				<button type="submit" onClick={() => handleNewUser()}>Ok</button>
 			</div>
 			<div className="chatcontacts__head">
 				<h2>Chats</h2>
@@ -38,7 +57,7 @@ function ChatContacts (props) {
 				</div>
 			</div>
 			<div className="chatcontacts__items">
-				{chats ? chats.map((user, index) => {
+				{chats.length ? chats.map((user, index) => {
 					return (
 						<ChatContactsItems
 							key={user.id}
