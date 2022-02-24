@@ -88,7 +88,7 @@ function ChatMessages ({ mainChatStorage }) {
 										message={itm.msg}
 										image={itm.image}
 									/>
-									{[ ...Array(numberOfUsers - 1) ].map((element, index) => (
+									{[ ...Array(numberOfUsers) ].map((element, index) => (
 										<div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
 											<ChatItem
 												animationDelay={index + 2}
@@ -98,9 +98,7 @@ function ChatMessages ({ mainChatStorage }) {
 												image={itm.image}
 											/>
 										</div>
-
 									))}
-
 								</div>)
 						}
 					}) : chat.map((itmm, index) => {
@@ -123,8 +121,6 @@ function ChatMessages ({ mainChatStorage }) {
 											image={itmm.image}
 										/>
 									</div>
-
-
 								</div>)
 						}
 					})}

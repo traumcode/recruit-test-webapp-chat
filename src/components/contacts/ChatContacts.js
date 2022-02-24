@@ -56,14 +56,6 @@ function ChatContacts ({ mainChatStorage }) {
 					<i className="fa fa-ellipsis-h"/>
 				</button>
 			</div>
-			<div className="chatcontacts__search">
-				<div className="search_wr">
-					<input type="text" placeholder="Search.." required/>
-					<button className="btn-search">
-						<i className="fa fa-search"/>
-					</button>
-				</div>
-			</div>
 			<div className="chatcontacts__items">
 				{chats.length ? chats.map((user, index) => {
 					if (user.name.split(" ").length === 1) {

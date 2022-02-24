@@ -18,17 +18,11 @@ function App () {
 			let mainChatStorage = JSON.parse(window.localStorage.getItem("MainChatStorage") || "{}")
 			if (!mainChatStorage.Users) {
 				setMainStorage({
-					Users: [
-						{
-
-						},
-					],
+					Users: [ {} ],
 					CurrentChat: ""
 				})
 			}
-
 		})
-
 		window.dispatchEvent(new Event("storage"))
 	}, [])
 
